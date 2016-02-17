@@ -1,0 +1,68 @@
+body, html {
+	padding: 0;
+	margin: 0;
+}
+
+#inputDate {
+	margin: 0vh auto 3vh auto;
+	font-size: 4vh;
+	display: block;
+	height: calc(9vh - 4px);
+}
+
+.bellWrapper {
+	width: 100vw;
+	position: relative;
+	cursor: pointer;
+}
+
+.bellWrapper:hover .hoverbar {
+	background-color: rgba(255, 255, 255, 0.0);
+}
+
+.bellWrapper:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.bellBlock {
+	width: 10vw;
+	height: 8vh;
+	background-color: red;
+	float: left;
+}
+
+.cover, .hoverbar {
+	width: 100%;
+	background-color: rgba(255, 255, 255, 0.7);
+	height: 8vh;
+	position: absolute;
+}
+
+.hoverbar {
+	background-color: rgba(255, 255, 255, 0.3);
+}
+
+.rowDate {
+	position: absolute;
+	width: calc(10vw - 5px);
+	height: 8vh;
+	line-height: 8vh;
+	padding-left: 5px;
+	font-family: 'Courier';
+	font-size: 1.3vw;
+}
+
+.mainRowDate {
+	font-size: 1.8vw;
+}
+
+.invalidDate {
+	width: 100vw;
+	text-align: center;
+	font-size: 4vh;
+	padding: 41vh 0vw;
+	background-color: #eee;
+	font-family: 'Courier'
+}
