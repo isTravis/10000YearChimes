@@ -8,8 +8,8 @@ var BellRow = React.createClass({
 	},
 
 	componentDidMount: function() {
-		document.getElementById('cover-' + this.props.index).style.transition = '0s linear transform';
-		document.getElementById('cover-' + this.props.index).style.transform = 'translateX(-100%)';
+		this.setTransition('0s linear all');
+		this.setTransform('translateX(-100%)');
 	},
 
 	componentWillUpdate: function(nextProps) {
@@ -28,6 +28,21 @@ var BellRow = React.createClass({
 		return this.props.setCurrentSequence(this.props.index);
 	},
 
+	setTransition: function(transition) {
+		document.getElementById('cover-' + this.props.index).style.WebkitTransition = transition;
+		document.getElementById('cover-' + this.props.index).style.MozTransition = transition;
+		document.getElementById('cover-' + this.props.index).style.msTransition = transition;
+		document.getElementById('cover-' + this.props.index).style.OTransition = transition;
+		document.getElementById('cover-' + this.props.index).style.transition = transition;
+	},
+	setTransform: function(transform) {
+		document.getElementById('cover-' + this.props.index).style.WebkitTransform = transform;
+		document.getElementById('cover-' + this.props.index).style.MozTransform = transform;
+		document.getElementById('cover-' + this.props.index).style.msTransform = transform;
+		document.getElementById('cover-' + this.props.index).style.OTransform = transform;
+		document.getElementById('cover-' + this.props.index).style.transform = transform;
+	},
+
 	stopSequence: function() {
 		for (var index = 1; index < 11; index++) {
 			clearTimeout(bellTimeouts[index-1]);
@@ -38,8 +53,8 @@ var BellRow = React.createClass({
 			}
 			
 		}
-		document.getElementById('cover-' + this.props.index).style.transition = '0s linear transform';
-		document.getElementById('cover-' + this.props.index).style.transform = 'translateX(-100%)';
+		this.setTransition('0s linear all');
+		this.setTransform('translateX(-100%)');
 		
 	},
 
@@ -54,8 +69,8 @@ var BellRow = React.createClass({
 		for (var index = 0; index < 10; index++) {
 			this.playBell(bellSequence[index], index * 500);
 		}
-		document.getElementById('cover-' + this.props.index).style.transition = '5s linear transform';
-		document.getElementById('cover-' + this.props.index).style.transform = 'translateX(0%)';
+		this.setTransition('5s linear all');
+		this.setTransform('translateX(0%)');
 	},
 
 	rowDate: function() {
@@ -149,7 +164,7 @@ var BellPlayer = React.createClass({
 			currentDate: new Date(this.refs.inputDate.value)
 		});
 	},
-	
+
 	getToday: function() {
 		var date = new Date();
 		return date.getFullYear() + '-' + (date.getMonth.length < 2 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1) ) + '-' + date.getDate();
@@ -179,8 +194,9 @@ var BellPlayer = React.createClass({
 	}
 });
 
-
-ReactDOM.render(
-	<BellPlayer />,
-	document.getElementById('player')
-);
+setTimeout(function(){
+	ReactDOM.render(
+		<BellPlayer />,
+		document.getElementById('player')
+	);
+}, 10)
