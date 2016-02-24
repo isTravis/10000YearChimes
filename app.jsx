@@ -157,7 +157,7 @@ var BellPlayer = React.createClass({
 		// 	bellSequence.splice(bellIndex, 0, index);
 		// }
 		// return bellSequence;
-		return NthPermutation(dayNumber,10).reverse();
+		return NthPermutation(dayNumber,10);
 	},
 	
 	setCurrentSequence: function(sequenceIndex) {
