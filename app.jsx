@@ -94,6 +94,18 @@ var BellRow = React.createClass({
 			9: '#2c3e50',
 			10: '#7f8c8d'
 		};
+		// var bellColors = { // Eno colors
+		// 	1: '#fe954c',
+		// 	2: '#b26b98',
+		// 	3: '#e0a5c8',
+		// 	4: '#91cce6',
+		// 	5: '#b26b96',
+		// 	6: '#92c57b',
+		// 	7: '#fee936',
+		// 	8: '#e5677c',
+		// 	9: '#fed3d4',
+		// 	10: '#e0b2b2'
+		// };
 		return (
 			<div className="bellWrapper" onClick={this.onRowClick}>
 				<div id={'cover-' + this.props.index} className="cover"></div>
@@ -139,12 +151,13 @@ var BellPlayer = React.createClass({
 	},
 
 	calculateSequence: function(dayNumber) {
-		var bellSequence = [];
-		for (var index = 1; index < 11; index++) {
-			var bellIndex = dayNumber % index;
-			bellSequence.splice(bellIndex, 0, index);
-		}
-		return bellSequence;
+		// var bellSequence = [];
+		// for (var index = 1; index < 11; index++) {
+		// 	var bellIndex = dayNumber % index;
+		// 	bellSequence.splice(bellIndex, 0, index);
+		// }
+		// return bellSequence;
+		return NthPermutation(dayNumber,10).reverse();
 	},
 	
 	setCurrentSequence: function(sequenceIndex) {
@@ -200,3 +213,69 @@ setTimeout(function(){
 		document.getElementById('player')
 	);
 }, 10)
+
+
+function factorial(n) { 
+	if (n <= 1) return 1; 
+	return n*factorial(n-1); 
+} 
+
+function FunnyDigit(n,i) {
+	return (Math.floor(n/factorial(i-1)) % i)
+}
+
+function testFunnyDigit() {
+	var output = []
+	for (var x = 0; x <= factorial(3) - 1; x++) {
+		output.push([]);
+		for (var i = 1; i <= 3; i++) {
+			output[x].push(FunnyDigit(x, i));
+		}
+	}
+	console.log(output);
+}
+
+function MakePerm(f, e) {
+	if (f.length === 0) {
+		return  [];
+	} else {
+		var cloned = f.slice(0);
+		var x = MakePerm(f.slice(1,f.length), e.slice(1,e.length));
+		x.splice(f[0], 0, e[0]);
+		return x;
+	}
+}
+
+function MakePermutation(f, bells) {
+	var reversed = f.slice(0);
+	reversed.reverse();
+	var array = [];
+	for (var i = bells; i>=0; i--) {
+		array.push(i);
+	}
+	return MakePerm(reversed, array);
+}
+
+function NthPermutation(n, bells) {
+	var array = [];
+	for (var i = 1; i <= bells; i++) {
+		array.push(FunnyDigit(n,i));
+	}
+
+	return MakePermutation(array, bells);
+}
+
+function testNthPermutation() {
+	console.log(NthPermutation(1567806,10));
+}
+
+function testNthPermutationTable() {
+	var output = [];
+	for (var x = 0; x <= factorial(3) - 1; x++) {
+		output.push(NthPermutation(x,3));
+	}
+	console.log(output);
+}
+
+
+
