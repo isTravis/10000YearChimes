@@ -67,9 +67,9 @@ var BellRow = React.createClass({
 	playSequence: function() {
 		var bellSequence = this.props.sequence;
 		for (var index = 0; index < 10; index++) {
-			this.playBell(bellSequence[index], index * 1000);
+			this.playBell(bellSequence[index], index * 2000);
 		}
-		this.setTransition('10s linear all');
+		this.setTransition('20s linear all');
 		this.setTransform('translateX(0%)');
 	},
 
