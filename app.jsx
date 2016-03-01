@@ -180,7 +180,7 @@ var BellPlayer = React.createClass({
 
 	getToday: function() {
 		var date = new Date();
-		return date.getFullYear() + '-' + (date.getMonth.length < 2 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1) ) + '-' + date.getDate();
+		return date.getFullYear() + '-' + (date.getMonth() < 9 ? '0' : '') + (date.getMonth() + 1) + '-' + (date.getDate() < 10 ? '0' : '') + date.getDate();
 	},
 
 	render: function() {
