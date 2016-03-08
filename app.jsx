@@ -188,20 +188,22 @@ var BellPlayer = React.createClass({
 		return (
 			<div>
 				<input type="date" min="2000-01-01" name="inputDate" id="inputDate" ref="inputDate" defaultValue={this.getToday()} onChange={this.dateChanged}/>
-				{this.state.currentDate && isNaN( this.state.currentDate.getTime())
-					? <div className="invalidDate">Not a valid date</div>
-					: this.state.currentSequences.map((sequence, index)=>{
-						return (
-							<BellRow 
-								key={'sequence-' + index}
-								index={index}
-								sequence={sequence} 
-								setCurrentSequence={this.setCurrentSequence} 
-								play={this.state.currentSequenceIndex === index} 
-								setDate={this.state.currentDate} />		
-						);
-					})
-				}
+				<div id="bellGrid">
+					{this.state.currentDate && isNaN( this.state.currentDate.getTime())
+						? <div className="invalidDate">Not a valid date</div>
+						: this.state.currentSequences.map((sequence, index)=>{
+							return (
+								<BellRow
+									key={'sequence-' + index}
+									index={index}
+									sequence={sequence}
+									setCurrentSequence={this.setCurrentSequence}
+									play={this.state.currentSequenceIndex === index}
+									setDate={this.state.currentDate} />
+							);
+						})
+					}
+				</div>
 			</div>
 		);
 	}
