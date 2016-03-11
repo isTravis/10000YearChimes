@@ -4,17 +4,21 @@ body, html {
 }
 
 #inputDate {
-	margin: 0vh auto 3vh auto;
+	margin: 0vh auto;
 	font-size: 4vh;
 	display: block;
-	height: calc(9vh - 4px);
+	height: 8vh;
+	text-align: center;
+}
+
+#bellGrid {
+	position: absolute;
+	bottom: 0;
 }
 
 .bellWrapper {
-	width: 100vw;
 	position: relative;
 	cursor: pointer;
-	border-bottom: 1px solid #BBB;
 }
 
 .bellWrapper:hover .hoverbar {
@@ -29,15 +33,17 @@ body, html {
 
 .bellBlock {
 	width: 10vw;
-	height: calc(8vh - 1px);
+	height: 8vh;
+	box-sizing: border-box;
+	border-bottom: 1px solid #BBB;
 	background-color: red;
 	float: left;
 }
 
 .cover, .hoverbar {
 	width: 100%;
+	height: 100%;
 	background-color: rgba(255, 255, 255, 0.7);
-	height: 8vh;
 	position: absolute;
 }
 
@@ -47,8 +53,6 @@ body, html {
 
 .rowDate {
 	position: absolute;
-	width: calc(10vw - 5px);
-	height: 8vh;
 	line-height: 8vh;
 	padding-left: 5px;
 	font-family: 'Courier';
